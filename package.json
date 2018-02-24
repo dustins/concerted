@@ -50,5 +50,28 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "whatwg-fetch": "2.0.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "ts",
+      "tsx"
+    ],
+    "rootDir": "src/main/webapp",
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/config/jest/typescriptTransform.js",
+      ".(css|scss)": "<rootDir>/config/jest/cssTransform.js",
+      ".(\\w{2,4})": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "transformIgnorePatterns": [
+      "node_modules",
+      "<rootDir>/config",
+      "<rootDir>/public",
+      "<rootDir>/scripts"
+    ],
+    "verbose": true
   }
 }
