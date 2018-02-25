@@ -1,14 +1,14 @@
 {
   "name": "concerted",
   "version": "0.0.1",
-  "main": "src/main/webapp/index.tsx",
+  "main": "src/main/webapp/src/index.tsx",
   "author": "Dustin Sweigart <dustin@swigg.net>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "node src/main/webapp/scripts/start.js",
-    "build": "node src/main/webapp/scripts/build.js",
-    "test": "node src/main/webapp/scripts/test.js --env=jsdom"
+    "start": "node src/main/web/scripts/start.js",
+    "build": "node src/main/web/scripts/build.js",
+    "test": "node src/main/web/scripts/test.js --env=jsdom"
   },
   "devDependencies": {
     "@types/jest": "^22.1.3",

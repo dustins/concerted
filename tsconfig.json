@@ -1,14 +1,18 @@
 {
   "compilerOptions": {
-    "outDir": "src/main/resources/static/dist",
+    //    "outDir": "src/main/resources/static/dist",
     "module": "esnext",
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "sourceMap": true,
     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src/main/webapp/src",
+//    "rootDir": "src/main/webapp/src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
