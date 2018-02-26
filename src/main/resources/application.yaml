@@ -1,3 +1,7 @@
+server:
+    compression:
+        enabled: true
+
 spring:
     security:
         user:

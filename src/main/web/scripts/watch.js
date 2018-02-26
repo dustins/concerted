@@ -128,7 +128,10 @@ function build(previousFileSizes) {
 }
 
 function displayError(err) {
-    console.log(chalk.red('Failed to compile.\n'));
+    const date = new Date();
+    console.log(chalk.red('[' +
+    date.toLocaleTimeString()
+    + '] Failed to compile.\n'));
     printBuildError(err);
     // process.exit(1);
 }

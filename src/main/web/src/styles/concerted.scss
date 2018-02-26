@@ -1,0 +1,38 @@
+// @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/utilities";
+
+header {
+    background: theme-color("primary");
+    
+    nav {
+        a {
+            color: color-yiq(theme-color("primary"));
+            &:hover {
+                color: color-yiq(theme-color("primary"));
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+main {
+    
+}
+
+footer {
+    .container {
+        .row {
+            .footer-wrapper {
+                background: lightgrey;
+                border-radius: 1em;
+            }
+        }
+    }
+}

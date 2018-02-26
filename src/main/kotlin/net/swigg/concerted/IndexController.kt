@@ -18,6 +18,10 @@ class IndexController {
 		model.set("request", mapOf(
 		  "location" to request.servletPath
 		))
+		
+		model.set("initialState", """{
+			"authenticated": false	
+		}""")
 
 		return "index"
 	}
