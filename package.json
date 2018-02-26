@@ -69,7 +69,7 @@
       "ts",
       "tsx"
     ],
-    "rootDir": "src/main/webapp",
+    "rootDir": "src/main/web",
     "transform": {
       ".(ts|tsx)": "<rootDir>/config/jest/typescriptTransform.js",
       ".(css|scss)": "<rootDir>/config/jest/cssTransform.js",
