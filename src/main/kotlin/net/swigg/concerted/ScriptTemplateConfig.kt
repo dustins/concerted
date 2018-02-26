@@ -50,7 +50,7 @@ class ScriptTemplateConfig : WebMvcConfigurer {
 
 		val manifestResource = ClassPathResource(prefixPath + manifestName)
 		val typeRef = object : TypeReference<HashMap<String, String>>() {}
-		val manifest: Map<String, String> = mapper.readValue(manifestResource.file, typeRef)
+		val manifest: Map<String, String> = mapper.readValue(manifestResource.inputStream, typeRef)
 
 		return prefixPath + manifest[serverScript]
 	}
