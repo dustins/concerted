@@ -23,9 +23,10 @@ const mapDispatchToProps = (dispatch: any) => ({
 
 const Authenticated = connect(mapStateToProps, mapDispatchToProps)(({ authenticated, login, logout }) => {
     const action = authenticated ? logout : login;
+    const href = authenticated ? '/logout' : '/login';
     const text = authenticated ? 'Logout' : 'Log In';
     
-    return <NavLink to="/logout" className="nav-link" onClick={() => action()}>{text}</NavLink>;
+    return <NavLink to={href} className="nav-link" onClick={() => action()}>{text}</NavLink>;
 });
 
 export default class Header extends React.Component {
@@ -34,7 +35,7 @@ export default class Header extends React.Component {
         return (
             <header>
                 <nav className="container navbar navbar-expand-md sticky-top">
-                    <NavLink to="/" className="navbar-brand">Concerted</NavLink>
+                    <NavLink to="/" className="navbar-brand brand">Concerted</NavLink>
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <NavLink to="/" className="nav-link">Home</NavLink>

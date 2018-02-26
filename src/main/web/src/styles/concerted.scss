@@ -26,13 +26,12 @@ main {
     
 }
 
+.brand {
+    font-weight: bold;
+}
+
 footer {
-    .container {
-        .row {
-            .footer-wrapper {
-                background: lightgrey;
-                border-radius: 1em;
-            }
-        }
-    }
+    background: #242729;
+    color: darkgrey;
+    font-size: 0.8rem;
 }

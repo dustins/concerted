@@ -13,7 +13,7 @@ class IndexController {
 	@Autowired
 	lateinit var mapper: ObjectMapper
 
-	@RequestMapping("/")
+	@RequestMapping(path = ["/", "/login", "/logout"])
 	fun index(model: Model, request: HttpServletRequest): String {
 		model.set("request", mapOf(
 		  "location" to request.servletPath
