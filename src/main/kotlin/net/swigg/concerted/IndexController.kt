@@ -13,7 +13,7 @@ class IndexController {
 	@Autowired
 	lateinit var mapper: ObjectMapper
 
-	@RequestMapping(path = ["/", "/login", "/logout"])
+	@RequestMapping(path = ["/"])
 	fun index(model: Model, request: HttpServletRequest): String {
 		model.set("request", mapOf(
 		  "location" to request.servletPath
@@ -24,5 +24,18 @@ class IndexController {
 		}""")
 
 		return "index"
+	}
+
+	@RequestMapping(path = ["/private"])
+	fun private(model: Model, request: HttpServletRequest): String {
+//		model.set("request", mapOf(
+//		  "location" to request.servletPath
+//		))
+//
+//		model.set("initialState", """{
+//			"authenticated": false
+//		}""")
+
+		return "index/private"
 	}
 }
