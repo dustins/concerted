@@ -26,16 +26,8 @@ class IndexController {
 		return "index"
 	}
 
-	@RequestMapping(path = ["/private"])
+	@RequestMapping(path = ["/private1", "/private2"])
 	fun private(model: Model, request: HttpServletRequest): String {
-//		model.set("request", mapOf(
-//		  "location" to request.servletPath
-//		))
-//
-//		model.set("initialState", """{
-//			"authenticated": false
-//		}""")
-
 		return "index/private"
 	}
 }
