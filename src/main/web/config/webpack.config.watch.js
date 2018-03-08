@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -15,6 +16,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const WrapperPlugin = require('wrapper-webpack-plugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -60,7 +62,7 @@ module.exports = {
     // In production, we only want to load the polyfills and the app code.
     entry: {
         "main": [require.resolve('./polyfills'), paths.appIndexJs],
-        "server": path.resolve(paths.appSrc, "server.tsx")
+        "server": [require.resolve('./polyfills-fetch'), require.resolve('core-js'), path.resolve(paths.appSrc, "server.tsx")]
     },
     output: {
         // The build folder.
@@ -250,11 +252,6 @@ module.exports = {
             template: paths.appHtml,
             excludeChunks: ["server"]
         }),
-        // Makes some environment variables available to the JS code, for example:
-        // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
-        // It is absolutely essential that NODE_ENV was set to production here.
-        // Otherwise React will be compiled in the very slow development mode.
-        new webpack.DefinePlugin(env.stringified),
         // Watcher doesn't work well if you mistype casing in a path so we use
         // a plugin that prints an error when you attempt to do this.
         // See https://github.com/facebookincubator/create-react-app/issues/240
@@ -287,6 +284,10 @@ module.exports = {
             tsconfig: paths.appTsConfig,
             tslint: paths.appTsLint,
         }),
+        new WrapperPlugin({
+            test: /server\.bundle\.js$/,
+            header: fs.readFileSync(require.resolve('./polyfills-server'))
+        })
     ],
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

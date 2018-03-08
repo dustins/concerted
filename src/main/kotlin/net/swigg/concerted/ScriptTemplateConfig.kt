@@ -36,22 +36,25 @@ class ScriptTemplateConfig : WebMvcConfigurer {
 
 		val configurer = ScriptTemplateConfigurer()
 		configurer.engineName = engineName
-		configurer.setScripts(polyfillScript, getJSBundle())
+		configurer.setScripts(
+//		  polyfillScript,
+//		  getJSBundle("polyfill.js"),
+		  getJSBundle("server.js")
+		)
 		configurer.renderFunction = renderFunction
 		configurer.isSharedEngine = false
 
 		return configurer
 	}
 
-	private fun getJSBundle(): String {
+	private fun getJSBundle(scriptName: String): String {
 		val prefixPath = "public/"
 		val manifestName = "asset-manifest.json"
-		val serverScript = "server.js"
 
 		val manifestResource = ClassPathResource(prefixPath + manifestName)
 		val typeRef = object : TypeReference<HashMap<String, String>>() {}
 		val manifest: Map<String, String> = mapper.readValue(manifestResource.inputStream, typeRef)
 
-		return prefixPath + manifest[serverScript]
+		return prefixPath + manifest[scriptName]
 	}
 }

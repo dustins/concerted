@@ -1,33 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-interface AuthenticatedProps {
-    authenticated: boolean;
-    login(): void;
-    logout(): void;
-}
-
-const mapStateToProps = (state: AuthenticatedProps) => {
-    return {
-        authenticated: state.authenticated
-    };
-};
-
-const AUTHENTICATION_CHANGE = 'AUTHENTICATION_CHANGE';
-
-const mapDispatchToProps = (dispatch: any) => ({
-    login: () => dispatch({type: AUTHENTICATION_CHANGE, authenticated: true}),
-    logout: () => dispatch({type: AUTHENTICATION_CHANGE, authenticated: false})
-});
-
-const Authenticated = connect(mapStateToProps, mapDispatchToProps)(({ authenticated, login, logout }) => {
-    const action = authenticated ? logout : login;
-    const href = authenticated ? '/logout' : '/login';
-    const text = authenticated ? 'Logout' : 'Log In';
-    
-    return <NavLink to={href} className="nav-link" onClick={() => action()}>{text}</NavLink>;
-});
+import { LogInOut } from './auth/LogInOut';
 
 export default class Header extends React.Component {
 
@@ -46,7 +19,7 @@ export default class Header extends React.Component {
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Authenticated/>
+                            <LogInOut/>
                         </li>
                     </ul>
                 </nav>

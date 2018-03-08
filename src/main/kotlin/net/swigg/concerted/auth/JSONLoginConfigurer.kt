@@ -1,9 +1,11 @@
-package net.swigg.concerted
+package net.swigg.concerted.auth
 
+import net.swigg.concerted.ExceptionHandlingConfigurerResolver
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.config.annotation.web.HttpSecurityBuilder
 import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer
 import org.springframework.security.web.AuthenticationEntryPoint
@@ -20,6 +22,14 @@ class JSONLoginConfigurer<H : HttpSecurityBuilder<H>> : AbstractAuthenticationFi
 	init {
 		successHandler { request, response, authentication ->
 			response.status = HttpStatus.OK.value()
+		}
+
+		failureHandler { request, response, exception ->
+			when (exception) {
+				is BadCredentialsException -> response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus
+				  .UNAUTHORIZED.reasonPhrase)
+				else -> response.sendError(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.reasonPhrase)
+			}
 		}
 	}
 

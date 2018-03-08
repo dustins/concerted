@@ -1,4 +1,4 @@
-package net.swigg.concerted
+package net.swigg.concerted.auth
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.http.HttpHeaders

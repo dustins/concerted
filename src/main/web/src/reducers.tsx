@@ -1,8 +1,6 @@
-export function reducer(state: any = [], action: any): any {
-    switch (action.type) {
-        case 'AUTHENTICATION_CHANGE':
-            return {authenticated: action.authenticated};
-        default:
-            return state;
-    }
-}
+import { combineReducers } from 'redux';
+import authReducers from './auth/reducers';
+
+export default combineReducers({
+    authentication: authReducers
+});
