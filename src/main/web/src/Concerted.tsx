@@ -43,7 +43,7 @@ export default class Concerted extends React.Component<ConcertedProperties, any>
                             <Route path="/about" component={About}/>
                             <Route path="/login" component={Login}/>
                             <Route path="/logout" component={RedirectToHome}/>
-                                <Route component={NoRoute}/>
+                            <Route component={NoRoute}/>
                             </Switch>
                         </div>
                     </div>

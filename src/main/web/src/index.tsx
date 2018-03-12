@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 // import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
+import { Dispatch, Provider } from 'react-redux';
 import concertedReducers from './reducers';
 import Concerted from './Concerted';
 import { createLogger } from 'redux-logger';
@@ -22,8 +22,12 @@ const store = createStore(concertedReducers, window.__PRELOADED_STATE__, applyMi
     createLogger()
 ));
 
-AuthenticationService.refresh().then(principal => store.dispatch(authenticationSuccess(principal)))
-    .catch(() => store.dispatch(authenticationSuccess(null)));
+store.dispatch((dispatch: Dispatch<any>, getState: Function) => {
+    if (getState().authentication.principal == null) {
+        AuthenticationService.refresh().then(principal => store.dispatch(authenticationSuccess(principal)))
+            .catch(() => store.dispatch(authenticationSuccess(null)));
+    }
+});
 
 ReactDOM.render(
     <Provider store={store}>

@@ -36,8 +36,6 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 			  .loginPage("/login")
 			  .successForwardUrl("/auth/authenticated")
 			  .and()
-//			  .formLogin()
-//			  .and()
 			  .csrf()
 			  .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 			  .and()

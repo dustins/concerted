@@ -2,6 +2,11 @@
 <!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN" "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
 <urlrewrite>
     <rule match-type="regex">
+        <note>Remove trailing slash</note>
+        <from>^/(.*)/$</from>
+        <to type="redirect" last="true">/$1</to>
+    </rule>
+    <rule match-type="regex" enabled="false">
         <from>^(/(?!(public|static|auth)).*)$</from>
         <to>/</to>
     </rule>

@@ -4,6 +4,7 @@ import { FormApi } from 'react-form';
 import { connect } from 'react-redux';
 import { authenticationFailure, login } from './actions';
 import { Authentication } from './AuthenticationService';
+import { Redirect } from 'react-router';
 
 interface LoginFormProperties {
     authentication: Authentication;
@@ -24,7 +25,7 @@ class LoginForm extends React.Component<LoginFormProperties, any> {
     render(): React.ReactNode {
         if (this.props.authentication.principal) {
             return (
-                <p>You are already logged in.</p>
+                <Redirect to="/"/>
             );
         }
 

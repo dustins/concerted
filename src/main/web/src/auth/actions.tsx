@@ -23,11 +23,9 @@ export function login(token: AuthenticationToken) {
     return (dispatch: Dispatch<any>, getState: () => any) => {
         dispatch(authenticationRequest());
 
-        setTimeout(() => {
-            AuthenticationService.authenticate(token)
-                .then(principal => dispatch(authenticationSuccess(principal)))
-                .catch(reason => dispatch(authenticationFailure(reason)));
-        }, 2000);
+        AuthenticationService.authenticate(token)
+            .then(principal => dispatch(authenticationSuccess(principal)))
+            .catch(reason => dispatch(authenticationFailure(reason)));
     };
 }
 
