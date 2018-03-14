@@ -16,7 +16,7 @@ class IndexController {
 	@Autowired
 	lateinit var mapper: ObjectMapper
 
-	@RequestMapping(path = ["/", "/login", "/about"])
+	@RequestMapping(path = ["/", "/login", "/register", "/about", "/settings/profile"])
 	fun index(model: Model, request: HttpServletRequest): String {
 		val authentication = SecurityContextHolder.getContext().authentication
 		val state = ConcertedState(authentication)

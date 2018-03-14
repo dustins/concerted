@@ -1,16 +1,19 @@
 import React from 'react';
+import { Redirect, Route, RouteProps, Switch } from 'react-router';
 import Header from './Header';
 import Footer from './Footer';
-import { Redirect, Route, RouteProps, Switch } from 'react-router';
-import './styles/concerted.scss';
+import Settings from './settings/Settings';
 import Login from './auth/LoginForm';
+import Register from './auth/RegisterForm';
+import RequireAuthentication from './auth/RequireAuthentication';
+import './styles/concerted.scss';
 
 interface ConcertedProperties {
     location?: string;
 }
 
 const SimplePage = (props: { text: string }) => {
-    return <div><h1>{props.text}</h1></div>;
+    return <><h1>{props.text}</h1></>;
 };
 
 const Home = (props: RouteProps) => {
@@ -33,23 +36,31 @@ export default class Concerted extends React.Component<ConcertedProperties, any>
 
     render(): React.ReactNode {
         return (
-            <div>
+            <>
                 <Header/>
                 <main>
                     <div className="container">
                         <div className="row">
                             <Switch>
-                            <Route exact={true} path="/" component={Home}/>
-                            <Route path="/about" component={About}/>
-                            <Route path="/login" component={Login}/>
-                            <Route path="/logout" component={RedirectToHome}/>
-                            <Route component={NoRoute}/>
+                                <Route exact={true} path="/" component={Home}/>
+                                <Route path="/about" component={About}/>
+                                <Route path="/settings"
+                                    render={() => (
+                                        <RequireAuthentication>
+                                            <Settings/>
+                                        </RequireAuthentication>
+                                    )}
+                                />
+                                <Route path="/register" component={Register}/>
+                                <Route path="/login" component={Login}/>
+                                <Route path="/logout" component={RedirectToHome}/>
+                                <Route component={NoRoute}/>
                             </Switch>
                         </div>
                     </div>
                 </main>
                 <Footer/>
-            </div>
+            </>
         );
     }
 }

@@ -38,18 +38,22 @@ class LoginForm extends React.Component<LoginFormProperties, any> {
                         {this.props.authentication.failure &&
                         <p className="alert alert-danger">{this.props.authentication.failure}</p>}
 
-                        <div>
-                            <label htmlFor="username">Username</label>
-                            <Text field="username" id="username" disabled={disabled}/>
+                        <div className="form-row">
+                            <div className="form-group col">
+                                <label htmlFor="username">Username</label>
+                                <Text field="username" id="username" disabled={disabled} className="form-control"/>
+                            </div>
+
+                            <div className="form-group col">
+                                <label htmlFor="password">Password</label>
+                                <Text field="password" id="password" disabled={disabled} className="form-control"
+                                      type="password"/>
+                            </div>
                         </div>
 
-                        <div>
-                            <label htmlFor="password">Password</label>
-                            <Text field="password" id="password" disabled={disabled}/>
-                        </div>
-
-                        <div>
-                            <button type="submit" disabled={disabled}>Submit</button>
+                        <div className="d-flex flex-row-reverse">
+                            <button type="submit" disabled={disabled} className="btn btn-primary m-1">Log In</button>
+                            <a href="/register" className="btn btn-outline-secondary m-1">Register</a>
                         </div>
                     </form>
                 )}
@@ -63,11 +67,9 @@ class LoginForm extends React.Component<LoginFormProperties, any> {
     }
 }
 
-const mapStateToProps = (state: any) => {
-    return {
-        authentication: state.authentication
-    };
-};
+const mapStateToProps = (state: any) => ({
+    authentication: state.authentication
+});
 
 const mapDispatchToProps = {
     login,

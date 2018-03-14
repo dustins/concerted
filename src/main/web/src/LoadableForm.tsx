@@ -77,6 +77,13 @@ export const StyledSelect = Loadable({
     loading: () => null
 });
 
+export const StyledText = Loadable({
+    loader: () => import(/* webpackChunkName: "react-form" */ 'react-form').then((ReactForm) => {
+        return ReactForm.StyledText;
+    }),
+    loading: () => null
+});
+
 export const StyledTextArea = Loadable({
     loader: () => import(/* webpackChunkName: "react-form" */ 'react-form').then((ReactForm) => {
         return ReactForm.StyledTextArea;

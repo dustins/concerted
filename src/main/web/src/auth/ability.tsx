@@ -16,10 +16,12 @@ function admin(can: Function) {
     can('read', 'all');
     can('update', 'all');
     can('delete', 'all');
+    can('manage', 'all');
 }
 
 function user(can: Function) {
     can('read', 'all');
+    can('update', 'settings');
 }
 
 export default function (principal: any): Ability {
@@ -28,11 +30,11 @@ export default function (principal: any): Ability {
             return;
         }
 
-        if (principal.roles.findIndex((value: String) => value === 'ROLE_ADMIN')) {
+        if (principal.roles.findIndex((value: String) => value === 'ROLE_ADMIN') > -1) {
             admin(can);
         }
 
-        if (principal.roles.findIndex((value: String) => value === 'ROLE_USER')) {
+        if (principal.roles.findIndex((value: String) => value === 'ROLE_USER') > -1) {
             user(can);
         }
     });

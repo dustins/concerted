@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { LogInOut } from './auth/LogInOut';
+import Can from './auth/Can';
 
 export default class Header extends React.Component {
 
@@ -18,6 +19,11 @@ export default class Header extends React.Component {
                         </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
+                        <li className="nav-item">
+                            <Can run="update" on="settings">
+                                <NavLink to="/settings/profile" className="nav-link">Settings</NavLink>
+                            </Can>
+                        </li>
                         <li className="nav-item">
                             <LogInOut/>
                         </li>
