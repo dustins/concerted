@@ -45,9 +45,9 @@ export default class Concerted extends React.Component<ConcertedProperties, any>
                                 <Route exact={true} path="/" component={Home}/>
                                 <Route path="/about" component={About}/>
                                 <Route path="/settings"
-                                    render={() => (
+                                    render={(props: any) => (
                                         <RequireAuthentication>
-                                            <Settings/>
+                                            <Settings {...props}/>
                                         </RequireAuthentication>
                                     )}
                                 />

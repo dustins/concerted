@@ -271,7 +271,8 @@ module.exports = {
         // Generates an `index.html` file with the <script> injected.
         new HtmlWebpackPlugin({
             inject: true,
-            template: paths.appHtml,
+            template: paths.appHtmlTemplate,
+            filename: paths.appHtml,
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+<th:block th:fragment="state">
+    <script th:if="${state != null}">
+        window.__PRELOADED_STATE__ = [(${state})];
+    </script>
+    <script th:if="${state == null}">
+        window.__PRELOADED_STATE__ = {};
+    </script>
+</th:block>
+</body>
+</html>

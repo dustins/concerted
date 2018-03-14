@@ -249,7 +249,20 @@ module.exports = {
         // Generates an `index.html` file with the <script> injected.
         new HtmlWebpackPlugin({
             inject: true,
-            template: paths.appHtml,
+            template: paths.appHtmlTemplate,
+            filename: paths.appHtml,
+            minify: {
+                removeComments: false,
+                collapseWhitespace: false,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
+            },
             excludeChunks: ["server"]
         }),
         // Watcher doesn't work well if you mistype casing in a path so we use

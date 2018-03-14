@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { authenticationFailure, login } from './actions';
 import { Authentication } from './AuthenticationService';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 interface LoginFormProperties {
     authentication: Authentication;
@@ -53,7 +54,7 @@ class LoginForm extends React.Component<LoginFormProperties, any> {
 
                         <div className="d-flex flex-row-reverse">
                             <button type="submit" disabled={disabled} className="btn btn-primary m-1">Log In</button>
-                            <a href="/register" className="btn btn-outline-secondary m-1">Register</a>
+                            <Link to="/register" className="btn btn-outline-secondary m-1">Register</Link>
                         </div>
                     </form>
                 )}
@@ -62,8 +63,10 @@ class LoginForm extends React.Component<LoginFormProperties, any> {
     }
 
     componentWillUnmount(): void {
-        // clear failure message
-        this.props.authenticationFailure(null);
+        if (!this.props.authentication.principal) {
+            // clear failure message
+            this.props.authenticationFailure(null);
+        }
     }
 }
 

@@ -16,11 +16,16 @@ class IndexController {
 	@Autowired
 	lateinit var mapper: ObjectMapper
 
-	@RequestMapping(path = ["/", "/login", "/register", "/about", "/settings/profile"])
+	@RequestMapping(path = [
+		"/",
+		"/login", "/register", "/logout",
+		"/about",
+		"/settings/profile"
+	])
 	fun index(model: Model, request: HttpServletRequest): String {
 		val authentication = SecurityContextHolder.getContext().authentication
 		val state = ConcertedState(authentication)
-		model.set("preloadedState", mapper.writeValueAsString(state))
+		model.set("state", mapper.writeValueAsString(state))
 
 		return "index"
 	}
