@@ -16,7 +16,7 @@ export interface Authentication {
 
 export class AuthenticationService {
     static async authenticate(token: AuthenticationToken): Promise<Authentication> {
-        return await fetch('http://localhost:8080/login', {
+        return await fetch('/login', {
             credentials: 'same-origin',
             method: 'POST',
             body: JSON.stringify(token),
@@ -35,7 +35,7 @@ export class AuthenticationService {
     }
 
     static async logout(): Promise<boolean> {
-        return await fetch('http://localhost:8080/logout', {
+        return await fetch('/logout', {
             credentials: 'same-origin',
             method: 'POST',
             headers: {
@@ -49,7 +49,7 @@ export class AuthenticationService {
     }
 
     static async refresh(): Promise<Authentication> {
-        return await fetch('http://localhost:8080/auth/authenticated', {
+        return await fetch('/auth/authenticated', {
             credentials: 'same-origin',
             method: 'GET',
             headers: {

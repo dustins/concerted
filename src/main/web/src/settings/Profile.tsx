@@ -83,7 +83,7 @@ const ConnectedProfile = connect<any, any, any, any>(mapStateToProps)(Profile);
 export default Loadable.Map({
     timeout: 5000,
     loader: {
-        profile: () => fetch('/api/settings/profile').then(response => response.json())
+        profile: () => fetch('/api/settings/profile', {credentials: 'same-origin'}).then(response => response.json())
     },
     loading: Loading,
     render(loaded: any, props: any) {

@@ -20,25 +20,13 @@ class Can extends React.Component<CanProps, CanState> {
 
     ability: Ability;
 
-    unsubscribeFromAbility: () => void;
-
     constructor(props: CanProps, state: CanState) {
         super(props, state);
         this.ability = abilities(this.props.principal);
     }
 
-    componentWillMount() {
-        this.unsubscribeFromAbility = this.ability.on('updated', () => {
-            this.forceUpdate();
-        });
-    }
-
     componentWillUpdate(nextProps: Readonly<CanProps>, nextState: Readonly<CanState>, nextContext: any): void {
         this.ability = abilities(nextProps.principal);
-    }
-
-    componentWillUnmount() {
-        this.unsubscribeFromAbility();
     }
 
     render() {

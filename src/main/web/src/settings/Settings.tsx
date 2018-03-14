@@ -1,7 +1,7 @@
 import React from 'react';
 import Can from '../auth/Can';
-import { RelativeLink as Link } from 'react-router-relative-link';
-import { Route, Switch } from 'react-router';
+// import { RelativeLink as Link } from 'react-router-relative-link';
+import { Route, Switch, Link } from 'react-router-dom';
 import Profile from './Profile';
 
 export default class Settings extends React.Component<any, any> {
