@@ -17,7 +17,7 @@ export interface Authentication {
 export class AuthenticationService {
     static async authenticate(token: AuthenticationToken): Promise<Authentication> {
         return await fetch('/login', {
-            credentials: 'same-origin',
+            credentials: 'include',
             method: 'POST',
             body: JSON.stringify(token),
             headers: {
@@ -36,8 +36,8 @@ export class AuthenticationService {
 
     static async logout(): Promise<boolean> {
         return await fetch('/logout', {
-            credentials: 'same-origin',
-            method: 'POST',
+            credentials: 'include',
+            method: 'GET',
             headers: {
                 'content-type': 'application/json',
                 'X-XSRF-TOKEN': Cookie.get('XSRF-TOKEN') || ''
@@ -50,7 +50,7 @@ export class AuthenticationService {
 
     static async refresh(): Promise<Authentication> {
         return await fetch('/auth/authenticated', {
-            credentials: 'same-origin',
+            credentials: 'include',
             method: 'GET',
             headers: {
                 'content-type': 'application/json',

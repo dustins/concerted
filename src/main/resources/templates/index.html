@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
@@ -20,14 +20,12 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Concerted</title>
-    <link href="/static/css/main.css" rel="stylesheet">
-</head>
-<body>
-<noscript>
-    You need to enable JavaScript to run this app.
-</noscript>
-<div id="root"></div>
-<th:block th:include="~{state :: state}"/>
-<script type="text/javascript" src="/static/js/main.bundle.js"></script>
-</body>
+  <link href="/static/css/main.css" rel="stylesheet"></head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <th:block th:include="~{state :: state}"/>
+  <script type="text/javascript" src="/static/js/main.bundle.js"></script></body>
 </html>
