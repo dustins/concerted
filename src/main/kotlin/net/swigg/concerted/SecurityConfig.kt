@@ -41,6 +41,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 			  .and()
 			  .logout()
 			  .logoutRequestMatcher(AntPathRequestMatcher("/logout"))
+			  .logoutUrl("/")
 		}
 	}
 }
