@@ -4,9 +4,11 @@ import { Authentication } from './AuthenticationService';
 import { Redirect } from 'react-router';
 import { Form, Text } from '../LoadableForm';
 import { FormApi } from 'react-form';
-import { Email, SameAs, Size } from '../validation/validators';
-import { combineValidators } from '../validation/validation';
+import { SameAs } from '../validation/SameAs';
+import { combineValidators, composeValidators } from '../validation/validation';
 import _ from 'underscore';
+import { Email } from '../validation/Email';
+import { Size } from '../validation/Size';
 
 interface RegisterFormProps {
     authentication: Authentication;
@@ -27,10 +29,10 @@ class RegisterForm extends React.Component<RegisterFormProps, any> {
     validate(values: any): any {
         const errors = _.omit(combineValidators({
             username: Size(3, 20),
-            email: Email,
+            email: composeValidators(Email(), Size(3, 20)),
             password: Size(8),
             password_confirm: SameAs('password', 'Password'),
-        })(values), (value: any, key: string) => {
+        })(values, this.formApi), (value: any, key: string) => {
             return !this.formApi.touched.hasOwnProperty(key) || this.formApi.touched[key] === false;
         });
 
@@ -53,8 +55,11 @@ class RegisterForm extends React.Component<RegisterFormProps, any> {
         return (
             <Form onSubmit={this.onSubmit} validate={this.validate}>
                 {(formApi: FormApi) => {
-                    const {errors} = formApi;
+                    const {errors, warnings} = formApi;
                     this.formApi = formApi;
+
+                    console.log(errors);
+                    console.log(warnings);
 
                     const registerEnabled = _.values(formApi.touched).length >= 4 && formApi.errors === undefined;
 

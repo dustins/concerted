@@ -4,7 +4,7 @@ import { Form, Text } from '../LoadableForm';
 import { FormApi } from 'react-form';
 import Loadable from 'react-loadable';
 import { combineValidators } from '../validation/validation';
-import { NotEmpty } from '../validation/validators';
+import { NotEmpty } from '../validation/NotEmpty';
 import Loading from '../Loading';
 
 interface ProfileProps {
@@ -28,8 +28,8 @@ class Profile extends React.Component<any, any> {
 
     validate(values: any): any {
         return combineValidators({
-            displayName: NotEmpty,
-            email: NotEmpty
+            displayName: NotEmpty(),
+            email: NotEmpty()
         })(values);
     }
 
